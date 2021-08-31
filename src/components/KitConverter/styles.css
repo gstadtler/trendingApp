@@ -1,0 +1,8 @@
+.kitConverter {
+  margin: 100px 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: center;
+}
