@@ -3,7 +3,7 @@ import { useHistory } from "react-router";
 import { AuthContext } from "../providers/auth";
 import "./styles.css";
 
-const Navbar = () => {
+const Navbar = ({ username }) => {
   const auth = useContext(AuthContext);
   const history = useHistory();
 
@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className="navbar">
         <h1>Trending Strateegia</h1>
         <div className="logout">
-          <h3>Bem vinda!</h3>
+          <h3>Welcome {username}</h3>
           <button onClick={handleLogout}>logout</button>
         </div>
       </div>
