@@ -1,8 +1,28 @@
 .kitConverter {
-  margin: 100px 300px;
-  width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 15px;
   text-align: center;
+}
+.kitConverter input {
+  width: 100%;
+}
+
+.kitConverter label {
+  font-weight: 500;
+}
+
+.kitConverter button {
+  width: fit-content;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.kitConverter button:hover {
+  background-color: #000;
+  color: #fff;
 }

@@ -1,0 +1,42 @@
+.trending-topics-container {
+  width: 65%;
+  margin: auto;
+}
+.trending-topics-container header {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  background-color: #f1f4f9;
+  border-radius: 20px;
+  padding: 10px 20px;
+  box-shadow: 0px 3px grey;
+}
+
+.trending-topics-container header input {
+  width: 100%;
+  border: 0;
+  background-color: #f1f4f9;
+}
+.trending-topics-container header input:focus {
+  outline: none;
+  text-decoration: underline;
+}
+
+.trending-topics-container .trends-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border: 1px #b7b7b7;
+  border-radius: 100px;
+}
+
+.trending-topics-container .trends-list .topic {
+  padding: 5px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.trending-topics-container .trends-list .topic:hover {
+  background-color: #b7b7b7;
+}

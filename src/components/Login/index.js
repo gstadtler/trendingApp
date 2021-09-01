@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { AuthContext } from "../providers/auth";
 import { authenticate } from "../../services/requestFunctions";
 
-import "./styles.scss";
+import "./styles.css";
 
 const Login = () => {
   const auth = useContext(AuthContext);

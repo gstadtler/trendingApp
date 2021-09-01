@@ -16,9 +16,9 @@ const Navbar = ({ username }) => {
   return (
     <>
       <div className="navbar">
-        <h1>Trending Strateegia</h1>
+        <h2>Trending Strateegia</h2>
         <div className="logout">
-          <h3>Welcome {username}</h3>
+          <h3>Olá, {username}</h3>
           <button onClick={handleLogout}>logout</button>
         </div>
       </div>
