@@ -30,3 +30,20 @@ export const fetchUserProjects = async (token) => {
   });
   return data;
 };
+
+export const createKit = async (values, token) => {
+  const response = await api("/kits/v1/kit", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    data: {
+      title: values.title,
+      description: "trending topic do twitter",
+      tier: "CUSTOM",
+      type: "LEARNING",
+      questions: [{ id: Math.random(), question: values.question }],
+    },
+  });
+  return response;
+};
