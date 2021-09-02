@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../providers/auth";
 import { createKit } from "../../services/requestFunctions";
 import {
@@ -8,31 +8,30 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
-import { IoMdAddCircleOutline } from "react-icons/io";
+import { useForm, useFieldArray } from "react-hook-form";
+import { IoMdAddCircleOutline, IoMdTrash } from "react-icons/io";
 import "./styles.css";
 
 const KitConverter = ({ kitData }) => {
-  const [title, setTitle] = useState("");
-  const [question, setQuestion] = useState(
-    "O que você está pensando sobre isso?"
-  );
-
   const auth = useContext(AuthContext);
   const {
     handleSubmit,
     register,
+    control,
     formState: { errors, isSubmitting },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      questions: [{ question: "O que você está pensando sobre isso?" }],
+    },
+  });
 
-  // const questionsExample = [
-  //   {
-  //     id: Math.random(),
-  //     question: "O que você está pensando sobre isso?",
-  //   },
-  // ];
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "questions",
+  });
 
   const handleCreateKit = (values) => {
+    console.log("kit creation", values);
     createKit(values, auth.apiToken).then((response) => {
       console.log(response);
       if (response.status === 201) {
@@ -52,9 +51,6 @@ const KitConverter = ({ kitData }) => {
             id="title"
             type="text"
             defaultValue={kitData?.title}
-            onChange={(e) => {
-              setTitle(e.target.value);
-            }}
             {...register("title", {
               required: "This is required",
             })}
@@ -65,18 +61,27 @@ const KitConverter = ({ kitData }) => {
         </FormControl>
         <FormControl isInvalid={errors.question}>
           <FormLabel htmlFor="question">perguntas</FormLabel>
-          <Input
-            id="question"
-            type="text"
-            defaultValue={question}
-            onChange={(e) => setQuestion(e.target.value)}
-            {...register("question", {
-              required: "This is required",
-            })}
-          />
-          <FormErrorMessage>
-            {errors.question && errors.question.message}
-          </FormErrorMessage>
+          {fields.map((field, index) => (
+            <div key={field.id} className="questions">
+              <Input
+                type="text"
+                {...register(`questions.${index}.question`, {
+                  required: "This is required",
+                })}
+                defaultValue={`questions.${index}.question`}
+              />
+              <FormErrorMessage>
+                {errors.question && errors.question.message}
+              </FormErrorMessage>
+              <Button onClick={() => remove(index)}>
+                <IoMdTrash />
+              </Button>
+            </div>
+          ))}
+          <Button type="button" onClick={() => append({ question: "" })}>
+            adicionar pergunta
+            <IoMdAddCircleOutline />
+          </Button>
         </FormControl>
         <FormLabel htmlFor="references">referências</FormLabel>
         <Button leftIcon={<IoMdAddCircleOutline />}>adicionar link</Button>

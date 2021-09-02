@@ -42,7 +42,7 @@ export const createKit = async (values, token) => {
       description: "trending topic do twitter",
       tier: "CUSTOM",
       type: "LEARNING",
-      questions: [{ id: Math.random(), question: values.question }],
+      questions: values.questions,
     },
   });
   return response;

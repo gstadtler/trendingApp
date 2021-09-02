@@ -26,3 +26,8 @@
   background-color: #000;
   color: #fff;
 }
+
+.kitConverter .questions {
+  display: flex;
+  gap: 10px;
+}
