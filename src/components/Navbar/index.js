@@ -16,10 +16,10 @@ const Navbar = ({ username }) => {
   return (
     <>
       <div className="navbar">
-        <h2>Trending Strateegia</h2>
+        <h2>#trending.strateegia</h2>
         <div className="logout">
           <h3>Olá, {username}</h3>
-          <button onClick={handleLogout}>logout</button>
+          <button onClick={handleLogout}>sair</button>
         </div>
       </div>
     </>

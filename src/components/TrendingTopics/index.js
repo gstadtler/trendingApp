@@ -37,10 +37,10 @@ const TrendingTopics = ({ handleKitData }) => {
 
   return (
     <div className="trending-topics-container">
-      <header>
+      {/* <header>
         <HiSearch />
         <Input placeholder="procurar assunto" />
-      </header>
+      </header> */}
       {/* <div className="filters">
             <Select placeholder="tema">
               <option value={trend.theme}>{trend.theme}</option>

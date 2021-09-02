@@ -1,9 +1,16 @@
 .navbar {
+  background-color: #563a8e;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 30px 40px;
+  padding: 0 30px 10px;
 }
+
+.navbar h2 {
+  color: #fff;
+  font-weight: 400;
+}
+
 .navbar .logout {
   display: flex;
   gap: 10px;
@@ -22,9 +29,10 @@
 
 .navbar .logout h3 {
   min-width: fit-content;
+  color: #fff;
 }
 
 .navbar .logout button:hover {
-  background-color: #000;
+  background-color: #9f8dc9;
   color: #fff;
 }
