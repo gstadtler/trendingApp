@@ -4,8 +4,9 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../providers/auth";
 import { authenticate } from "../../services/requestFunctions";
+import polygon from "../../assets/polygon.svg";
 
-import "./styles.css";
+import "./styles.scss";
 
 const Login = () => {
   const auth = useContext(AuthContext);
@@ -40,6 +41,7 @@ const Login = () => {
       {!auth.isAuthenticated && (
         <div className="login-container">
           <div className="informative">
+            <h4>#trending.strategia</h4>
             <p>
               Debata assuntos do momento com privacidade e de forma estruturada
             </p>

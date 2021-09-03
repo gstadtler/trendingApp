@@ -1,7 +1,7 @@
 import { Input, List, ListIcon, ListItem, Box, Button } from "@chakra-ui/react";
 import { HiHashtag, HiSearch } from "react-icons/hi";
 
-import "./styles.css";
+import "./styles.scss";
 
 const TrendingTopics = ({ handleKitData }) => {
   const trendind = [

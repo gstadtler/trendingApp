@@ -8,7 +8,7 @@ import Navbar from "../Navbar";
 import TrendingTopics from "../TrendingTopics";
 import KitConverter from "../KitConverter";
 
-import "./styles.css";
+import "./styles.scss";
 
 const Strateegia = () => {
   const [user, setUser] = useState({});

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useHistory } from "react-router";
 import { AuthContext } from "../providers/auth";
-import "./styles.css";
+import "./styles.scss";
 
 const Navbar = ({ username }) => {
   const auth = useContext(AuthContext);
