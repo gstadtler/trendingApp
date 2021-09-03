@@ -10,7 +10,8 @@ import {
 } from "@chakra-ui/react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { IoMdAddCircleOutline, IoMdTrash } from "react-icons/io";
-import "./styles.css";
+import "./styles.scss";
+// import InputReferences from "../InputReferences";
 
 const KitConverter = ({ kitData }) => {
   const auth = useContext(AuthContext);
@@ -59,6 +60,7 @@ const KitConverter = ({ kitData }) => {
             {errors.title && errors.title.message}
           </FormErrorMessage>
         </FormControl>
+
         <FormControl isInvalid={errors.question}>
           <FormLabel htmlFor="question">perguntas</FormLabel>
           {fields.map((field, index) => (
@@ -78,13 +80,23 @@ const KitConverter = ({ kitData }) => {
               </Button>
             </div>
           ))}
-          <Button type="button" onClick={() => append({ question: "" })}>
+          <Button
+            rightIcon={<IoMdAddCircleOutline />}
+            type="button"
+            onClick={() => append({ question: "" })}
+          >
             adicionar pergunta
-            <IoMdAddCircleOutline />
           </Button>
         </FormControl>
-        <FormLabel htmlFor="references">referências</FormLabel>
-        <Button leftIcon={<IoMdAddCircleOutline />}>adicionar link</Button>
+
+        {/* <FormControl isInvalid={errors.references}>
+          <FormLabel htmlFor="references">referências</FormLabel>
+          <InputReferences {...{ control, register, errors }} />
+          <FormErrorMessage>
+            {errors.references && errors.references.message}
+          </FormErrorMessage>
+        </FormControl> */}
+
         <Button
           mt={4}
           colorScheme="teal"

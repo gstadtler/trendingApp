@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./global.css";
+import "./global.scss";
 import App from "./App";
 import { AuthProvider } from "./components/providers/auth";
 import { BrowserRouter } from "react-router-dom";
