@@ -1,14 +1,22 @@
 import api from "./api";
 
 export const authenticate = async (values) => {
-  const { data } = await api("/users/v1/auth/signin", {
+  let functionReturn;
+  await api("/users/v1/auth/signin", {
     method: "POST",
     auth: {
       username: values.email,
       password: values.password,
     },
-  });
-  return data;
+  })
+    .then((response) => {
+      functionReturn = response;
+    })
+    .catch((err) => {
+      throw Error(err.message);
+    });
+
+  return functionReturn;
 };
 
 export const fetchUserData = async (token) => {
