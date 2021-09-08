@@ -1,24 +1,102 @@
 .login-container {
   display: flex;
-  width: 100%;
-  height: 100vh;
-  .informative {
-    background: #563a8e;
-    display: flex;
-    p {
-      color: #fff;
-      align-self: flex-end;
-      width: 60%;
-      font-size: 18px;
-      font-weight: bold;
-      margin: 0 auto 100px;
+  flex-direction: column;
+  gap: 50px;
+  .informative-wrapper {
+    .informative {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 15%;
+      .informative-texts {
+        text-align: center;
+        h2 {
+          color: #dc0362;
+          text-decoration: underline;
+        }
+        p {
+          color: #545151;
+          font-size: 18px;
+          font-weight: 700;
+          width: 60%;
+          margin: auto;
+        }
+      }
+      .ellipse {
+        display: none;
+      }
     }
   }
   .login-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     margin: auto;
+    h1 {
+      color: #545151;
+    }
+    .login-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      input {
+        background-color: #efefef;
+        width: 100%;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 2px 3px rgb(214, 209, 209);
+        padding: 12px;
+        &:focus {
+          outline: none;
+          text-decoration: underline;
+        }
+      }
+      button {
+        background-color: #3d5ba6;
+        color: #fff;
+        width: 50%;
+        margin: auto;
+        padding: 5px 12px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 2px 3px #efefef;
+        cursor: pointer;
+        transition: 0.5s;
+        &:hover {
+          background-color: #dc0362;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .login-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+    .informative-wrapper {
+      display: flex;
+      flex-direction: column;
+      .informative {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: 100%;
+        .informative-texts {
+          text-align: unset;
+          margin: 10% 0 0 15%;
+          p {
+            margin: 0;
+          }
+        }
+        .ellipse {
+          display: flex;
+          align-self: flex-end;
+        }
+      }
+    }
   }
 }
