@@ -34,11 +34,17 @@ const Strateegia = () => {
       <Navbar username={user.name} />
       <div className="sections-wrapper">
         <section className="topics-section">
-          <p>Selecione um assunto do momento para debater</p>
+          <div className="section-steps">
+            <span>1º passo</span>
+            <p>Selecione um assunto do momento para debater</p>
+          </div>
           <TrendingTopics handleKitData={handleKitData} />
         </section>
         <section className="kit-section">
-          <p>Criar ferramenta para o Strateegia</p>
+          <div className="section-steps">
+            <span>2º passo</span>
+            <p>Criar ferramenta para o Strateegia</p>
+          </div>
           <KitConverter kitData={kitData} />
         </section>
         <section className="journeys-section"></section>

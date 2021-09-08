@@ -9,7 +9,8 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useForm, useFieldArray } from "react-hook-form";
-import { IoMdAddCircleOutline, IoMdTrash } from "react-icons/io";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import { FiTrash2 } from "react-icons/fi";
 import "./styles.scss";
 // import InputReferences from "../InputReferences";
 
@@ -53,10 +54,10 @@ const KitConverter = ({ kitData }) => {
             type="text"
             defaultValue={kitData?.title}
             {...register("title", {
-              required: "This is required",
+              required: "campo obrigatório *",
             })}
           />
-          <FormErrorMessage>
+          <FormErrorMessage color="#dc0362">
             {errors.title && errors.title.message}
           </FormErrorMessage>
         </FormControl>
@@ -68,20 +69,25 @@ const KitConverter = ({ kitData }) => {
               <Input
                 type="text"
                 {...register(`questions.${index}.question`, {
-                  required: "This is required",
+                  required: "campo obrigatório *",
                 })}
                 defaultValue={`questions.${index}.question`}
               />
-              <FormErrorMessage>
+              <FormErrorMessage color="#dc0362">
                 {errors.question && errors.question.message}
               </FormErrorMessage>
-              <Button onClick={() => remove(index)}>
-                <IoMdTrash />
+              <Button
+                className="remove-question-btn"
+                onClick={() => remove(index)}
+              >
+                <FiTrash2 size={20} />
               </Button>
             </div>
           ))}
           <Button
-            rightIcon={<IoMdAddCircleOutline />}
+            className="add-question-btn"
+            display="flex"
+            rightIcon={<IoMdAddCircleOutline size={18} />}
             type="button"
             onClick={() => append({ question: "" })}
           >
@@ -98,15 +104,10 @@ const KitConverter = ({ kitData }) => {
         </FormControl> */}
 
         <Button
-          mt={4}
-          colorScheme="teal"
+          className="footer-btns"
           isLoading={isSubmitting}
           type="submit"
           width={"100px"}
-          style={{
-            display: "flex",
-            margin: "auto",
-          }}
         >
           salvar em ferramentas no strateegia
         </Button>
