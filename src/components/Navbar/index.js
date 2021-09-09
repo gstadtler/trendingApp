@@ -1,7 +1,9 @@
 import { useContext } from "react";
-import { useHistory } from "react-router";
 import { AuthContext } from "../providers/auth";
+import { useHistory } from "react-router";
 import "./styles.scss";
+
+import logo from "../../assets/starLogo.svg";
 
 const Navbar = ({ username }) => {
   const auth = useContext(AuthContext);
@@ -16,6 +18,7 @@ const Navbar = ({ username }) => {
   return (
     <>
       <div className="navbar">
+        <img src={logo} alt="star logo" />
         <h2>#trending.strateegia</h2>
         <div className="logout">
           <h3>Olá, {username}</h3>
