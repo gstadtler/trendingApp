@@ -2,7 +2,7 @@ import { useFieldArray } from "react-hook-form";
 import { Input, Button } from "@chakra-ui/react";
 import { IoMdAddCircleOutline, IoMdTrash } from "react-icons/io";
 
-const InputReferences = ({ control, register }) => {
+const CustomUseFieldArray = ({ control, register }) => {
   const { fields, append, remove } = useFieldArray({
     control,
     name: "references",
@@ -11,7 +11,7 @@ const InputReferences = ({ control, register }) => {
   return (
     <>
       {fields.map((field, index) => (
-        <div key={field.id} className="references">
+        <div key={field.id}>
           <Input
             type="text"
             name={`references.${index}.link`}
@@ -34,4 +34,4 @@ const InputReferences = ({ control, register }) => {
   );
 };
 
-export default InputReferences;
+export default CustomUseFieldArray;

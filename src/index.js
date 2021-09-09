@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { ChakraProvider } from "@chakra-ui/react";
 import "./global.scss";
 import App from "./App";
 import { AuthProvider } from "./components/providers/auth";
@@ -9,7 +10,9 @@ ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
       <AuthProvider>
-        <App />
+        <ChakraProvider resetCSS={false}>
+          <App />
+        </ChakraProvider>
       </AuthProvider>
     </React.StrictMode>
   </BrowserRouter>,
