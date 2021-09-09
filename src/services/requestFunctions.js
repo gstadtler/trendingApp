@@ -51,6 +51,7 @@ export const createKit = async (values, token) => {
       tier: "CUSTOM",
       type: "LEARNING",
       questions: values.questions,
+      references: values.references,
     },
   });
   return response;
