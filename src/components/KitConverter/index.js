@@ -1,104 +1,52 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../providers/auth";
 import { createKit } from "../../services/requestFunctions";
-import {
-  Button,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalBody,
-  ModalFooter,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 import { Formik, Form, FieldArray, Field } from "formik";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { FiTrash2 } from "react-icons/fi";
-import { CgCheckO } from "react-icons/cg";
+import CustomModal from "../CustomModal";
 import "./styles.scss";
 
 const KitConverter = ({ kitData }) => {
+  const [creationFailed, setCreationFailed] = useState(false);
+
   const auth = useContext(AuthContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handleCreateKit = (values) => {
-    // console.log("kit creation", values);
+  const initialValues = {
+    title: kitData?.name,
+    questions: [{ question: "O que você está pensando sobre isso?" }],
+    references: [{ description: kitData?.name, url: kitData?.url }],
+  };
+
+  const handleCreateKit = (values, onSubmitProps) => {
+    console.log("kit creation", values);
     createKit(values, auth.apiToken).then((response) => {
       console.log(response);
       if (response.status === 201) {
         onOpen();
+        onSubmitProps.resetForm(initialValues);
       } else {
-        alert("Ocorreu algum problema, tente novamente!");
+        setCreationFailed(!creationFailed);
+        onOpen();
+        onSubmitProps.resetForm(initialValues);
       }
     });
   };
 
-  const initialValues = {
-    title: kitData?.title,
-    questions: [{ question: "O que você está pensando sobre isso?" }],
-    references: [],
-  };
-
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalBody>
-            <CgCheckO
-              size={30}
-              color="#dc0362"
-              style={{ display: "flex", margin: "40px auto 20px" }}
-            />
-            <p
-              style={{
-                width: "60%",
-                margin: "auto",
-                color: "#545151",
-                textAlign: "center",
-                fontWeight: "600",
-              }}
-            >
-              kit adicionado em suas ferramentas no Strateegia
-            </p>
-          </ModalBody>
+      <CustomModal
+        isOpen={isOpen}
+        onClose={onClose}
+        failedModal={creationFailed}
+      />
 
-          <ModalFooter
-            display="flex"
-            flexDirection="column"
-            gridGap="20px"
-            mt={10}
-            mb={10}
-          >
-            <Button
-              onClick={onClose}
-              style={{
-                background: "#dc0362",
-                color: "#fff",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              ver no strateegia
-            </Button>
-            <Button
-              style={{
-                background: "#fff",
-                border: "1px solid grey",
-                cursor: "pointer",
-              }}
-            >
-              criar novo kit
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
       <Formik
         initialValues={initialValues}
         enableReinitialize
         onSubmit={handleCreateKit}
-        // validateOnChange={false}
-        // validateOnBlur={false}
-        // validateOnMount
       >
         {(formik) => {
           // console.log("Formik props", formik);
@@ -190,6 +138,9 @@ const KitConverter = ({ kitData }) => {
               <button className="footer-btns" type="submit">
                 salvar em ferramentas no strateegia
               </button>
+              {/* <button className="footer-btns" type="button" onClick={onOpen}>
+                feedback
+              </button> */}
             </Form>
           );
         }}
