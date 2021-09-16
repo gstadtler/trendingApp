@@ -19,7 +19,8 @@ const Navbar = ({ username }) => {
     <>
       <div className="navbar">
         <img src={logo} alt="star logo" />
-        <h2>#trending.strateegia</h2>
+        <h2 className="logo-desktop">#trending.strateegia</h2>
+        <h2 className="logo-mobile">#</h2>
         <div className="logout">
           <h3>Olá, {username}</h3>
           <button onClick={handleLogout}>sair</button>
