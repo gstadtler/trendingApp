@@ -27,19 +27,9 @@
     border-radius: 10px;
     margin-top: 50px;
   }
-  .trends-list {
-    display: flex;
-    flex-direction: column;
-    .topic {
-      color: #545151;
-      padding: 10px;
-      border-bottom: 1px solid #c4c4c4;
-      cursor: pointer;
-      transition: 0.2s;
-      &:hover {
-        font-weight: 700;
-      }
-    }
+  .pagination-ctrl {
+    width: 50%;
+    margin: auto;
   }
 }
 
