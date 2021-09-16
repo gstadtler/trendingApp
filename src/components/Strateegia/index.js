@@ -4,8 +4,9 @@ import {
   fetchUserData,
   // fetchUserProjects,
 } from "../../services/requestFunctions";
+import Scroll from "react-scroll";
 import Navbar from "../Navbar";
-import TrendingTopics from "../TrendingTopics";
+import TrendsList from "../TrendsList";
 import KitConverter from "../KitConverter";
 
 import "./styles.scss";
@@ -15,6 +16,7 @@ const Strateegia = () => {
   const [kitData, setKitData] = useState("");
   // const [projects, setProjects] = useState([]);
   const auth = useContext(AuthContext);
+  const scroll = Scroll.animateScroll;
 
   useEffect(() => {
     fetchUserData(auth.apiToken).then((data) => {
@@ -25,8 +27,13 @@ const Strateegia = () => {
     // });
   }, [auth.apiToken]);
 
+  // const scrollTo = () => {
+  //   scroll.scrollTo(100);
+  // }
+
   const handleKitData = (data) => {
     setKitData(data);
+    scroll.scrollTo(700);
   };
 
   return (
@@ -38,7 +45,7 @@ const Strateegia = () => {
             <span>1º passo</span>
             <p>Selecione um assunto do momento para debater</p>
           </div>
-          <TrendingTopics handleKitData={handleKitData} />
+          <TrendsList handleKitData={handleKitData} />
         </section>
         <section className="kit-section">
           <div className="section-steps">
