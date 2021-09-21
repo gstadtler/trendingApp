@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { Redirect } from "react-router";
 import {
   Box,
   FormErrorMessage,
@@ -31,7 +32,7 @@ const Login = () => {
       .then((response) => {
         if (response.data) {
           auth.setApiToken(response.data.access_token);
-          auth.setIsAuthenticated(!auth.isAuthenticated);
+          auth.setSession(response.data.access_token);
           history.push("/");
         }
       })
@@ -44,19 +45,9 @@ const Login = () => {
       });
   };
 
-  const handleLogout = () => {
-    auth.setApiToken("");
-    auth.setIsAuthenticated(!auth.isAuthenticated);
-  };
-
   return (
     <>
-      {auth.isAuthenticated && (
-        <div>
-          <h3>Bem vindo!</h3>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      )}
+      {auth.isAuthenticated && <Redirect to="/" />}
       {!auth.isAuthenticated && (
         <div>
           <div className="login-container">
@@ -113,19 +104,35 @@ const Login = () => {
             <div className="footer-credits">
               <p>Desenvolvido pelos estudantes:</p>
               <p>
-                <a href="https://www.linkedin.com/in/nathaliasonatti/">
+                <a
+                  href="https://www.linkedin.com/in/nathaliasonatti/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Nathália Cruz
                 </a>{" "}
                 (UX/UI Design) |{" "}
-                <a href="https://www.linkedin.com/in/gstadtler/">
+                <a
+                  href="https://www.linkedin.com/in/gstadtler/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Gabriel Stadler
                 </a>{" "}
                 (Desenvolvimento){" "}
-                <a href="https://www.linkedin.com/in/matheus-lobo-vaz-ara%C3%BAjo-247454203/">
+                <a
+                  href="https://www.linkedin.com/in/matheus-lobo-vaz-ara%C3%BAjo-247454203/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Matheus Lobo
                 </a>{" "}
                 (Desenvolvimento) |{" "}
-                <a href="https://www.linkedin.com/in/adriely-mirela-66603a193/">
+                <a
+                  href="https://www.linkedin.com/in/adriely-mirela-66603a193/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Adriely Lima
                 </a>{" "}
                 (Design)
@@ -133,7 +140,8 @@ const Login = () => {
             </div>
             <div className="footer-logo">
               <img src={logo} alt="star logo" />
-              <h3>#trending.strateegia</h3>
+              <h3 style={{ color: "#fff" }}>#</h3>
+              <h3>trending.strateegia</h3>
             </div>
           </div>
         </div>

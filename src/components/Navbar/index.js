@@ -10,8 +10,7 @@ const Navbar = ({ username }) => {
   const history = useHistory();
 
   const handleLogout = () => {
-    auth.setApiToken("");
-    auth.setIsAuthenticated(!auth.isAuthenticated);
+    auth.removeSession();
     history.push("/login");
   };
 
