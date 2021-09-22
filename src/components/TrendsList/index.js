@@ -53,7 +53,6 @@ const TrendsList = ({ handleKitData }) => {
   useEffect(() => {
     fetchTrendingTopics().then((data) => {
       setTrends(data[0].trends);
-      // setTrendsLocation(data[0].locations);
     });
   }, []);
 
