@@ -84,7 +84,7 @@ const Login = () => {
                   <Input
                     id="password"
                     type="password"
-                    placeholder="password"
+                    placeholder="senha"
                     {...register("password", {
                       required: "campo obrigatório *",
                     })}
