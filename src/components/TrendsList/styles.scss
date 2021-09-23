@@ -33,6 +33,13 @@
   }
 }
 
+.loading-trends {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  margin-top: 50px;
+}
+
 @media screen and (min-width: 540px) {
   .trending-topics-container {
     width: 50%;
