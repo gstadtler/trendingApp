@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/auth";
 import { createKit } from "../../services/requestFunctions";
-import { useDisclosure } from "@chakra-ui/react";
+import { useDisclosure, Button, Tooltip } from "@chakra-ui/react";
 import { Formik, Form, FieldArray, Field } from "formik";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { FiTrash2 } from "react-icons/fi";
@@ -16,8 +16,17 @@ const KitConverter = ({ kitData }) => {
 
   const initialValues = {
     title: kitData?.name,
+    description: "trending topic do twitter",
     questions: [{ question: "O que você está pensando sobre isso?" }],
     references: [{ description: kitData?.name, url: kitData?.url }],
+  };
+
+  const disableWhileTopicNotSelected = () => {
+    if (kitData) {
+      return false;
+    } else {
+      return true;
+    }
   };
 
   const handleCreateKit = (values, onSubmitProps) => {
@@ -54,11 +63,28 @@ const KitConverter = ({ kitData }) => {
             <Form className="kitConverter">
               <div className="form-control">
                 <label htmlFor="title">título</label>
-                <Field type="text" id="title" name="title" required />
+                <Field
+                  type="text"
+                  id="title"
+                  name="title"
+                  required
+                  disabled={disableWhileTopicNotSelected()}
+                />
               </div>
 
               <div className="form-control">
-                <label htmlFor="questions">perguntas</label>
+                <label htmlFor="title">descrição</label>
+                <Field
+                  type="text"
+                  id="description"
+                  name="description"
+                  required
+                  disabled={disableWhileTopicNotSelected()}
+                />
+              </div>
+
+              <div className="form-control">
+                <label htmlFor="questions">questões essenciais</label>
                 <FieldArray name="questions">
                   {(fieldArrayProps) => {
                     const { push, remove, form } = fieldArrayProps;
@@ -68,7 +94,10 @@ const KitConverter = ({ kitData }) => {
                       <div>
                         {questions.map((question, index) => (
                           <div key={index} className="array-field">
-                            <Field name={`questions[${index}].question`} />
+                            <Field
+                              name={`questions[${index}].question`}
+                              disabled={disableWhileTopicNotSelected()}
+                            />
                             {index > 0 && (
                               <button
                                 className="remove-btn"
@@ -85,7 +114,7 @@ const KitConverter = ({ kitData }) => {
                           type="button"
                           onClick={() => push("")}
                         >
-                          adicionar pergunta
+                          adicionar questão
                           <IoMdAddCircleOutline size={18} />
                         </button>
                       </div>
@@ -108,10 +137,12 @@ const KitConverter = ({ kitData }) => {
                             <Field
                               name={`references[${index}].description`}
                               placeholder="descrição"
+                              disabled={disableWhileTopicNotSelected()}
                             />
                             <Field
                               name={`references[${index}].url`}
                               placeholder="link"
+                              disabled={disableWhileTopicNotSelected()}
                             />
                             <button
                               className="remove-btn"
@@ -135,9 +166,18 @@ const KitConverter = ({ kitData }) => {
                   }}
                 </FieldArray>
               </div>
-              <button className="footer-btns" type="submit">
-                salvar em ferramentas no strateegia
-              </button>
+              {kitData ? (
+                <Button className="footer-btns" type="submit">
+                  salvar em ferramentas no strateegia
+                </Button>
+              ) : (
+                <Tooltip label="selecione um assunto do momento">
+                  <Button className="footer-btns disabled" type="button">
+                    salvar em ferramentas no strateegia
+                  </Button>
+                </Tooltip>
+              )}
+
               {/* <button className="footer-btns" type="button" onClick={onOpen}>
                 feedback
               </button> */}
