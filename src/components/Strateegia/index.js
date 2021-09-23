@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../providers/auth";
 import {
   fetchUserData,
   // fetchUserProjects,
 } from "../../services/requestFunctions";
-import Scroll from "react-scroll";
 import Navbar from "../Navbar";
 import TrendsList from "../TrendsList";
 import KitConverter from "../KitConverter";
@@ -16,7 +15,8 @@ const Strateegia = () => {
   const [kitData, setKitData] = useState("");
   // const [projects, setProjects] = useState([]);
   const auth = useContext(AuthContext);
-  const scroll = Scroll.animateScroll;
+
+  const secondStepRef = useRef(null);
 
   useEffect(() => {
     fetchUserData(auth.apiToken).then((data) => {
@@ -27,13 +27,9 @@ const Strateegia = () => {
     // });
   }, [auth.apiToken]);
 
-  // const scrollTo = () => {
-  //   scroll.scrollTo(100);
-  // }
-
   const handleKitData = (data) => {
     setKitData(data);
-    scroll.scrollTo(700);
+    secondStepRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -47,7 +43,7 @@ const Strateegia = () => {
           </div>
           <TrendsList handleKitData={handleKitData} />
         </section>
-        <section className="kit-section">
+        <section className="kit-section" ref={secondStepRef}>
           <div className="section-steps">
             <span>2º passo</span>
             <p>Criar ferramenta para o Strateegia</p>
