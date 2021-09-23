@@ -117,7 +117,7 @@ const Login = () => {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Gabriel Stadler
+                  Gabriel Stadtler
                 </a>{" "}
                 (Desenvolvimento){" "}
                 <a
