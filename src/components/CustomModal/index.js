@@ -71,11 +71,14 @@ const CustomModal = ({ isOpen, onClose, failedModal }) => {
                     margin: "auto",
                     color: "#545151",
                     textAlign: "center",
-                    fontWeight: "600",
+                    fontWeight: "500",
                   }}
                 >
-                  Kit salvo em tópicos de aprendizagem nas suas ferramentas no
-                  Strateegia
+                  Kit salvo em{" "}
+                  <span style={{ fontWeight: "bold" }}>
+                    tópicos de aprendizagem
+                  </span>{" "}
+                  nas suas ferramentas no strateegia
                 </p>
               </ModalBody>
 
@@ -90,7 +93,7 @@ const CustomModal = ({ isOpen, onClose, failedModal }) => {
                   href="https://strateegia.digital/"
                   onClick={onClose}
                   style={{
-                    background: "#dc0362",
+                    background: "#563a8e",
                     color: "#fff",
                     border: "none",
                     borderRadius: "3px",
