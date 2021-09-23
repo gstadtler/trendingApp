@@ -47,7 +47,7 @@ export const createKit = async (values, token) => {
     },
     data: {
       title: values.title,
-      description: "trending topic do twitter",
+      description: values.description,
       tier: "CUSTOM",
       type: "LEARNING",
       questions: values.questions,
