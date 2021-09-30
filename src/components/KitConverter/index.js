@@ -172,9 +172,9 @@ const KitConverter = ({ kitData }) => {
                 </Button>
               ) : (
                 <Tooltip label="selecione um assunto do momento">
-                  <button className="footer-btns disabled" type="button">
+                  <Button className="footer-btns" type="button" isDisabled>
                     salvar em ferramentas no strateegia
-                  </button>
+                  </Button>
                 </Tooltip>
               )}
 
